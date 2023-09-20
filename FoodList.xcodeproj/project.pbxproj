@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE055B2B2ABAF88B00158461 /* FoodListNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE055B2A2ABAF88B00158461 /* FoodListNetworkManager.swift */; };
+		DE055B2D2ABAFCA600158461 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE055B2C2ABAFCA600158461 /* UIImageView+Extension.swift */; };
+		DE055B2F2ABAFE5B00158461 /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE055B2E2ABAFE5B00158461 /* FoodListViewModel.swift */; };
 		DE9A14A92ABAF49B00FD1B0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A14A82ABAF49B00FD1B0E /* AppDelegate.swift */; };
 		DE9A14AB2ABAF49B00FD1B0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A14AA2ABAF49B00FD1B0E /* SceneDelegate.swift */; };
 		DE9A14AD2ABAF49B00FD1B0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A14AC2ABAF49B00FD1B0E /* ViewController.swift */; };
@@ -17,6 +20,8 @@
 		DE9A14C32ABAF49C00FD1B0E /* FoodListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A14C22ABAF49C00FD1B0E /* FoodListTests.swift */; };
 		DE9A14CD2ABAF49C00FD1B0E /* FoodListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A14CC2ABAF49C00FD1B0E /* FoodListUITests.swift */; };
 		DE9A14CF2ABAF49C00FD1B0E /* FoodListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A14CE2ABAF49C00FD1B0E /* FoodListUITestsLaunchTests.swift */; };
+		DE9A14DC2ABAF51900FD1B0E /* FoodListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A14DB2ABAF51900FD1B0E /* FoodListTableViewCell.swift */; };
+		DE9A14DE2ABAF67200FD1B0E /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A14DD2ABAF67200FD1B0E /* FoodModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE055B2A2ABAF88B00158461 /* FoodListNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListNetworkManager.swift; sourceTree = "<group>"; };
+		DE055B2C2ABAFCA600158461 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		DE055B2E2ABAFE5B00158461 /* FoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
 		DE9A14A52ABAF49B00FD1B0E /* FoodList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9A14A82ABAF49B00FD1B0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9A14AA2ABAF49B00FD1B0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +59,8 @@
 		DE9A14C82ABAF49C00FD1B0E /* FoodListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9A14CC2ABAF49C00FD1B0E /* FoodListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListUITests.swift; sourceTree = "<group>"; };
 		DE9A14CE2ABAF49C00FD1B0E /* FoodListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DE9A14DB2ABAF51900FD1B0E /* FoodListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListTableViewCell.swift; sourceTree = "<group>"; };
+		DE9A14DD2ABAF67200FD1B0E /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +114,11 @@
 				DE9A14A82ABAF49B00FD1B0E /* AppDelegate.swift */,
 				DE9A14AA2ABAF49B00FD1B0E /* SceneDelegate.swift */,
 				DE9A14AC2ABAF49B00FD1B0E /* ViewController.swift */,
+				DE9A14DB2ABAF51900FD1B0E /* FoodListTableViewCell.swift */,
+				DE9A14DD2ABAF67200FD1B0E /* FoodModel.swift */,
+				DE055B2E2ABAFE5B00158461 /* FoodListViewModel.swift */,
+				DE055B2A2ABAF88B00158461 /* FoodListNetworkManager.swift */,
+				DE055B2C2ABAFCA600158461 /* UIImageView+Extension.swift */,
 				DE9A14AE2ABAF49B00FD1B0E /* Main.storyboard */,
 				DE9A14B42ABAF49C00FD1B0E /* Assets.xcassets */,
 				DE9A14B62ABAF49C00FD1B0E /* LaunchScreen.storyboard */,
@@ -261,9 +276,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE055B2B2ABAF88B00158461 /* FoodListNetworkManager.swift in Sources */,
 				DE9A14AD2ABAF49B00FD1B0E /* ViewController.swift in Sources */,
+				DE055B2F2ABAFE5B00158461 /* FoodListViewModel.swift in Sources */,
+				DE055B2D2ABAFCA600158461 /* UIImageView+Extension.swift in Sources */,
 				DE9A14B32ABAF49B00FD1B0E /* FoodList.xcdatamodeld in Sources */,
 				DE9A14A92ABAF49B00FD1B0E /* AppDelegate.swift in Sources */,
+				DE9A14DE2ABAF67200FD1B0E /* FoodModel.swift in Sources */,
+				DE9A14DC2ABAF51900FD1B0E /* FoodListTableViewCell.swift in Sources */,
 				DE9A14AB2ABAF49B00FD1B0E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
