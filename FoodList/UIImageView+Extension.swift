@@ -11,14 +11,16 @@ import UIKit
 extension UIImageView {
     
     func load(url: URL) {
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async {
+        Task {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                return
+            }
+            
+            await MainActor.run {
                 self.image = UIImage(data: data)
             }
         }
-        
-        task.resume()
     }
     
 }

@@ -13,8 +13,6 @@ class ViewController: UIViewController {
     
     private var foodList = [FoodModel]()
     
-    private var closure: (() -> Void)? = nil
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,15 +22,20 @@ class ViewController: UIViewController {
     }
 
     private func getFoodList() {
-        FoodListViewModel.fetchFoodList(urlString: FoodListViewModel.foodListUrlString) { result in
-            switch result {
-            case .failure(let error):
-                let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            case .success(let foodList):
+        Task {
+            do { 
+               let foodList = try await FoodListViewModel.fetchFoodList(urlString: FoodListViewModel.foodListUrlString)
                 self.foodList = foodList
-                self.foodListTableView.reloadData()
+                
+                await MainActor.run {
+                    self.foodListTableView.reloadData()
+                }
+            } catch {
+                await MainActor.run {
+                    let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }

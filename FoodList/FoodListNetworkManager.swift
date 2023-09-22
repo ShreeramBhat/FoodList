@@ -8,6 +8,7 @@
 import Foundation
 
 enum NetworkError: Error {
+    case invalidServerResponse
     case someThingWentWrong
 }
 
@@ -15,6 +16,8 @@ extension NetworkError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
+        case .invalidServerResponse:
+            return NSLocalizedString("Invalid server response", comment: "")
         case .someThingWentWrong:
             return NSLocalizedString("Some thing went wrong", comment: "")
         }
@@ -24,30 +27,18 @@ extension NetworkError: LocalizedError {
 
 struct FoodListNetworkManager {
         
-    static func fetchFoodList(url: URL, completion: @escaping (Result<[FoodModel], Error>) -> Void) {
+    static func fetchFoodList(url: URL) async throws -> [FoodModel] {
         let session = URLSession.shared
         let request = URLRequest(url: url)
-        let task = session.dataTask(with: request) { (data, response, error) in
-            
-            if let error = error {
-                // Handle HTTP request error
-                completion(.failure(error))
-            } else if let data = data {
-                // Handle HTTP request response
-                
-                do {
-                    let foodListBaseModel = try JSONDecoder().decode(FoodListBaseModel.self, from: data)
-                    
-                    completion(.success(foodListBaseModel.categories))
-                } catch {
-                    completion(.failure(error))
-                }
-            } else {
-                // Handle unexpected error
-                completion(.failure(NetworkError.someThingWentWrong))
-            }
+        
+        let (data, response) = try await session.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw NetworkError.invalidServerResponse
         }
-        task.resume()
+        
+        let foodListBaseModel = try JSONDecoder().decode(FoodListBaseModel.self, from: data)
+        return foodListBaseModel.categories
     }
     
 }
