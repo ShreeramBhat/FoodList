@@ -7,22 +7,37 @@
 
 import Foundation
 
+enum UrlError: Error {
+    case invalidUrl
+}
+
+extension UrlError: LocalizedError {
+    
+    var errorDescription: String? {
+        switch self {
+        case .invalidUrl:
+            return NSLocalizedString("Invalid url", comment: "")
+        }
+    }
+    
+}
+
 struct FoodListViewModel {
     
     static let foodListUrlString = "https://www.themealdb.com/api/json/v1/1/categories.php"
     
-    static func fetchFoodList(urlString: String, completion: @escaping ([FoodModel]?, String?) -> Void) {
+    static func fetchFoodList(urlString: String, completion: @escaping (Result<[FoodModel], Error>) -> Void) {
         guard let foodListUrl = URL(string: urlString) else {
             DispatchQueue.main.async {
-                completion(nil, "Invalid Url")
+                completion(.failure(UrlError.invalidUrl))
             }
             
             return
         }
         
-        FoodListNetworkManager.fetchFoodList(url: foodListUrl) { foodList, error in
+        FoodListNetworkManager.fetchFoodList(url: foodListUrl) { result in
             DispatchQueue.main.async {
-                completion(foodList, error)
+                completion(result)
             }
         }
     }

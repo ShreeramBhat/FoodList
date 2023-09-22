@@ -21,28 +21,18 @@ class ViewController: UIViewController {
         
         self.title = "Categories"
         self.getFoodList()
-        
-//        self.closure = { // [weak self] in
-//            
-//        }
     }
 
     private func getFoodList() {
-        if let foodListUrl = URL(string: FoodListViewModel.foodListUrlString) {
-            FoodListViewModel.fetchFoodList(urlString: FoodListViewModel.foodListUrlString) { foodList, error in
-                if let error = error {
-                    let alert = UIAlertController(title: "Error!", message: error, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    
-                    return
-                }
-                
-                if let foodList = foodList {
-                    self.foodList = foodList
-                    
-                    self.foodListTableView.reloadData()
-                }
+        FoodListViewModel.fetchFoodList(urlString: FoodListViewModel.foodListUrlString) { result in
+            switch result {
+            case .failure(let error):
+                let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            case .success(let foodList):
+                self.foodList = foodList
+                self.foodListTableView.reloadData()
             }
         }
     }

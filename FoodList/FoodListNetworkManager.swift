@@ -7,30 +7,44 @@
 
 import Foundation
 
+enum NetworkError: Error {
+    case someThingWentWrong
+}
+
+extension NetworkError: LocalizedError {
+    
+    var errorDescription: String? {
+        switch self {
+        case .someThingWentWrong:
+            return NSLocalizedString("Some thing went wrong", comment: "")
+        }
+    }
+    
+}
+
 struct FoodListNetworkManager {
         
-    static func fetchFoodList(url: URL, completion: @escaping ([FoodModel]?, String?) -> Void) {
+    static func fetchFoodList(url: URL, completion: @escaping (Result<[FoodModel], Error>) -> Void) {
         let session = URLSession.shared
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) { (data, response, error) in
             
             if let error = error {
                 // Handle HTTP request error
-                completion(nil, error.localizedDescription)
+                completion(.failure(error))
             } else if let data = data {
                 // Handle HTTP request response
                 
                 do {
                     let foodListBaseModel = try JSONDecoder().decode(FoodListBaseModel.self, from: data)
                     
-                    completion(foodListBaseModel.categories, nil)
+                    completion(.success(foodListBaseModel.categories))
                 } catch {
-                    completion(nil, error.localizedDescription)
+                    completion(.failure(error))
                 }
             } else {
                 // Handle unexpected error
-                
-                completion(nil, "Something went wrong")
+                completion(.failure(NetworkError.someThingWentWrong))
             }
         }
         task.resume()
